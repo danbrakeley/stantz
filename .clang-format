@@ -8,11 +8,11 @@ MaxEmptyLinesToKeep: 1
 TabWidth: 2
 UseTab: ForIndentation
 
-AccessModifierOffset: 0
+AccessModifierOffset: -2
 AlignAfterOpenBracket: AlwaysBreak
 #AlignConsecutiveMacros: true
-AlignConsecutiveAssignments: true
-AlignConsecutiveDeclarations: true
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
 AlignEscapedNewlines: Left
 AlignOperands: false
 AlignTrailingComments: true
