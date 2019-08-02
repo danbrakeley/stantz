@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\near.h" />
     <ClInclude Include="..\src\pch.h" />
     <ClInclude Include="..\src\vec3.h" />
   </ItemGroup>

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "near.h"
+
 class vec3 {
 public:
 	vec3() : e{0, 0, 0} {}
@@ -8,17 +10,18 @@ public:
 		e[1] = e1;
 		e[2] = e2;
 	}
+
 	inline float x() const { return e[0]; }
 	inline float y() const { return e[1]; }
 	inline float z() const { return e[2]; }
 	inline float r() const { return e[0]; }
 	inline float g() const { return e[1]; }
 	inline float b() const { return e[2]; }
+	inline float operator[](int i) const { return e[i]; }
+	inline float& operator[](int i) { return e[i]; };
 
 	inline const vec3& operator+() const { return *this; }
 	inline vec3 operator-() const { return vec3(-e[0], -e[1], -e[2]); }
-	inline float operator[](int i) const { return e[i]; }
-	inline float& operator[](int i) { return e[i]; };
 
 	inline vec3& operator+=(const vec3& v);
 	inline vec3& operator-=(const vec3& v);
@@ -28,8 +31,9 @@ public:
 	inline vec3& operator/=(const float t);
 
 	inline float length() const { return sqrt(e[0] * e[0] + e[1] * e[1] + e[2] * e[2]); }
-	inline float squared_length() const { return e[0] * e[0] + e[1] * e[1] + e[2] * e[2]; }
-	inline void make_unit_vector();
+	inline float length_squared() const { return e[0] * e[0] + e[1] * e[1] + e[2] * e[2]; }
+	inline vec3 normalize() const;
+	inline void normalize_in_place();
 
 private:
 	float e[3];
@@ -130,13 +134,29 @@ inline vec3& vec3::operator/=(const float t) {
 	return *this;
 }
 
-inline void vec3::make_unit_vector() {
+inline vec3 vec3::normalize() const {
+	vec3 v = *this;
+	v.normalize_in_place();
+	return v;
+}
+
+inline void vec3::normalize_in_place() {
 	float k = 1.0f / length();
 	e[0] *= k;
 	e[1] *= k;
 	e[2] *= k;
 }
 
-inline vec3 unit_vector(const vec3& v) {
-	return v / v.length();
+// "unsafe" because it is directly comparing floats
+inline bool unsafe_equal(const vec3& v, const vec3& w) {
+	return v[0] == w[0] && v[1] == w[1] && v[2] == w[2];
+}
+
+inline bool almost_equal(const vec3& v, const vec3& w, float tol, float zero_tol) {
+	// clang-format off
+	return
+		almost_equal(v[0], w[0], tol, zero_tol) &&
+		almost_equal(v[1], w[1], tol, zero_tol) &&
+		almost_equal(v[2], w[2], tol, zero_tol);
+	// clang-format on
 }

@@ -14,7 +14,7 @@
     <ClCompile Include="../tests/pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="../tests/test.cpp">
+    <ClCompile Include="..\tests\vec3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
