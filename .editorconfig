@@ -17,5 +17,5 @@ indent_style = space
 [*.{c,cpp,h,hpp,cc,hh}]
 indent_style = tab
 
-[*.{yml,yaml}]
+[*.{md,yml,yaml}]
 indent_style = space
