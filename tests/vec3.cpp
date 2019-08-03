@@ -74,3 +74,7 @@ TEST(Vec3, LengthSquared) {
 	vec3 c(1, 2, 3);
 	EXPECT_EQ(c.length_squared(), 14.0f);
 }
+
+TEST(Vec3, Dot) {
+	EXPECT_EQ(dot(vec3(1, 2, 3), vec3(4, -5, 6)), 12);
+}
