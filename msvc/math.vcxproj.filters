@@ -31,6 +31,9 @@
     <ClInclude Include="..\src\math\vec3.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\math\camera.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\math\pch.cpp">

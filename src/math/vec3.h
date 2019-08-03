@@ -1,6 +1,7 @@
 #pragma once
 
 #include "near.h"
+#include <iostream>
 
 class vec3 {
 public:

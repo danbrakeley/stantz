@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\math\camera.h" />
     <ClInclude Include="..\src\math\hitable.h" />
     <ClInclude Include="..\src\math\hitable_list.h" />
     <ClInclude Include="..\src\math\near.h" />
