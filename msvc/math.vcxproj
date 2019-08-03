@@ -20,32 +20,32 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{C9491619-565D-4B85-9C9E-EAAB871E84AF}</ProjectGuid>
-    <RootNamespace>stantz</RootNamespace>
+    <ProjectGuid>{FF360FA6-CD4E-4866-937E-127638CC3E4F}</ProjectGuid>
+    <RootNamespace>math</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -154,27 +154,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\stantz\pch.h" />
+    <ClInclude Include="..\src\math\hitable.h" />
+    <ClInclude Include="..\src\math\hitable_list.h" />
+    <ClInclude Include="..\src\math\near.h" />
+    <ClInclude Include="..\src\math\pch.h" />
+    <ClInclude Include="..\src\math\ray.h" />
+    <ClInclude Include="..\src\math\sphere.h" />
+    <ClInclude Include="..\src\math\vec3.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\stantz\main.cpp" />
-    <ClCompile Include="..\src\stantz\pch.cpp">
+    <ClCompile Include="..\src\math\hitable_list.cpp" />
+    <ClCompile Include="..\src\math\near.cpp" />
+    <ClCompile Include="..\src\math\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\.clang-format" />
-    <None Include="..\.editorconfig" />
-    <None Include="..\.gitignore" />
-    <None Include="..\README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="math.vcxproj">
-      <Project>{ff360fa6-cd4e-4866-937e-127638cc3e4f}</Project>
-    </ProjectReference>
+    <ClCompile Include="..\src\math\sphere.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

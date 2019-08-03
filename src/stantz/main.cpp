@@ -1,9 +1,9 @@
 #include "pch.h"
-#include "hitable.h"
-#include "hitable_list.h"
-#include "ray.h"
-#include "sphere.h"
-#include "vec3.h"
+#include "math/hitable.h"
+#include "math/hitable_list.h"
+#include "math/ray.h"
+#include "math/sphere.h"
+#include "math/vec3.h"
 #include <limits>
 
 vec3 color(const ray& r, hitable* world) {

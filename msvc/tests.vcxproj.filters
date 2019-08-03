@@ -1,21 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
+    <Filter Include="Source">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="Precompiled Headers">
+      <UniqueIdentifier>{f9f3e241-1e9f-4899-ab18-dea688177352}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="../tests/pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\tests\vec3.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="../tests/pch.cpp">
+      <Filter>Precompiled Headers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -23,7 +22,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="../tests/pch.h">
-      <Filter>Header Files</Filter>
+      <Filter>Precompiled Headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

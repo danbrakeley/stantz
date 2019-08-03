@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Precompiled Headers">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;inl;inc;template;c;cc;cpp;cxx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\math\pch.h">
+      <Filter>Precompiled Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\math\hitable.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\math\hitable_list.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\math\near.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\math\ray.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\math\sphere.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\math\vec3.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\math\pch.cpp">
+      <Filter>Precompiled Headers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\math\hitable_list.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\math\near.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\math\sphere.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

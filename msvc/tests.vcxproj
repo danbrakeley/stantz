@@ -61,12 +61,12 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="stantz.vcxproj">
-      <Project>{c9491619-565d-4b85-9c9e-eaab871e84af}</Project>
-    </ProjectReference>
+    <None Include="../tests/packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="../tests/packages.config" />
+    <ProjectReference Include="math.vcxproj">
+      <Project>{ff360fa6-cd4e-4866-937e-127638cc3e4f}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
