@@ -13,8 +13,10 @@
 
 vec3 color(const ray& r, const hitable& world) {
 	hit_record rec;
-	if (world.hit(r, 0, std::numeric_limits<float>::max(), &rec)) {
-		return 0.5 * vec3(rec.normal.x() + 1, rec.normal.y() + 1, rec.normal.z() + 1);
+	// 0.001f here is to avoid "shadow acne", which is when hits that should be t=0 miss because of rounding error
+	if (world.hit(r, 0.001f, std::numeric_limits<float>::max(), &rec)) {
+		vec3 target = rec.point + rec.normal + vec3::random_in_unit_sphere();
+		return 0.5 * color(ray(rec.point, target - rec.point), world);
 	}
 
 	vec3 unit_direction = r.direction().normalize();
@@ -40,6 +42,8 @@ void thread_tracer(const hitable& world, const camera& cam, int y_start, int y_s
 			}
 
 			col /= float(ns);
+			// gamma correction: raise each component to 1/2 power for gamma of 2
+			col = vec3(sqrt(col[0]), sqrt(col[1]), sqrt(col[2]));
 			frame[iframe++] = short(255.99 * col.r());
 			frame[iframe++] = short(255.99 * col.g());
 			frame[iframe++] = short(255.99 * col.b());

@@ -51,5 +51,8 @@
     <ClCompile Include="..\src\math\sphere.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\math\vec3.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

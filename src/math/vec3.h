@@ -32,6 +32,8 @@ public:
 	inline vec3 normalize() const;
 	inline void normalize_in_place();
 
+	static vec3 random_in_unit_sphere();
+
 private:
 	float e[3];
 };
