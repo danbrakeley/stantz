@@ -11,40 +11,40 @@
 #include <thread>
 #include <assert.h>
 
-vec3 color(const ray& r, const hitable& world) {
+Vec3 color(const Ray& r, const Hitable& world) {
 	hit_record rec;
 	// 0.001f here is to avoid "shadow acne", which is when hits that should be t=0 miss because of rounding error
 	if (world.hit(r, 0.001f, std::numeric_limits<float>::max(), &rec)) {
-		vec3 target = rec.point + rec.normal + vec3::random_in_unit_sphere();
-		return 0.5 * color(ray(rec.point, target - rec.point), world);
+		Vec3 target = rec.point + rec.normal + Vec3::random_in_unit_sphere();
+		return 0.5 * color(Ray(rec.point, target - rec.point), world);
 	}
 
-	vec3 unit_direction = r.direction().normalize();
+	Vec3 unit_direction = r.direction().normalize();
 	float t = 0.5f * (unit_direction.y() + 1.0f);
-	return (1.0f - t) * vec3(1, 1, 1) + t * vec3(0.5f, 0.7f, 1);
+	return (1.0f - t) * Vec3(1, 1, 1) + t * Vec3(0.5f, 0.7f, 1);
 }
 
 constexpr int nx = 200;
 constexpr int ny = 100;
 constexpr int ns = 100;
 
-void thread_tracer(const hitable& world, const camera& cam, int y_start, int y_stop, short* p_frame) {
+void thread_tracer(const Hitable& world, const Camera& cam, int y_start, int y_stop, short* p_frame) {
 	assert(p_frame != nullptr);
 	int iframe = 0;
 	for (int j = y_start; j >= y_stop; j--) {
 		for (int i = 0; i < nx; i++) {
-			vec3 col(0, 0, 0);
+			Vec3 col(0, 0, 0);
 			for (int s = 0; s < ns; s++) {
 				float u = (float(i) + rand_unit<float>()) / float(nx);
 				float v = (float(j) + rand_unit<float>()) / float(ny);
-				ray r = cam.get_ray(u, v);
-				// vec3 p = r.point(2);
+				Ray r = cam.get_ray(u, v);
+				// Vec3 p = r.point(2);
 				col += color(r, world);
 			}
 
 			col /= float(ns);
 			// gamma correction: raise each component to 1/2 power for gamma of 2
-			col = vec3(sqrt(col[0]), sqrt(col[1]), sqrt(col[2]));
+			col = Vec3(sqrt(col[0]), sqrt(col[1]), sqrt(col[2]));
 			p_frame[iframe++] = short(255.99 * col.r());
 			p_frame[iframe++] = short(255.99 * col.g());
 			p_frame[iframe++] = short(255.99 * col.b());
@@ -55,11 +55,11 @@ void thread_tracer(const hitable& world, const camera& cam, int y_start, int y_s
 }
 
 int main() {
-	hitable* list[2];
-	list[0] = new sphere(vec3(0, 0, -1), 0.5);
-	list[1] = new sphere(vec3(0, -100.5f, -1), 100);
-	hitable* world = new hitable_list(list, 2);
-	camera cam;
+	Hitable* list[2];
+	list[0] = new Sphere(Vec3(0, 0, -1), 0.5);
+	list[1] = new Sphere(Vec3(0, -100.5f, -1), 100);
+	Hitable* world = new HitableList(list, 2);
+	Camera cam;
 
 	// frame buffer to collect work done by different threads
 	int frame_size = nx * ny * 3;

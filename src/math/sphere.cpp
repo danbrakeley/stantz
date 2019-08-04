@@ -1,10 +1,10 @@
 #include "pch.h"
 #include "sphere.h"
 
-bool sphere::hit(const ray& r, float t_min, float t_max, hit_record* p_rec) const {
+bool Sphere::hit(const Ray& r, float t_min, float t_max, hit_record* p_rec) const {
 	assert(p_rec != nullptr);
 
-	vec3 oc = r.origin() - m_center;
+	Vec3 oc = r.origin() - m_center;
 	float a = dot(r.direction(), r.direction());
 	// the 2 from b was removed because it doesn't impact how we use the discriminant, and cancels in the final quadratic
 	float b = dot(oc, r.direction());

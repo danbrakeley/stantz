@@ -3,7 +3,7 @@
 
 TEST(Vec3, DefaultValues) {
 	{
-		vec3 v;
+		Vec3 v;
 		EXPECT_EQ(v.x(), 0);
 		EXPECT_EQ(v.y(), 0);
 		EXPECT_EQ(v.z(), 0);
@@ -16,7 +16,7 @@ TEST(Vec3, DefaultValues) {
 	}
 
 	{
-		vec3 v(1, 2, 3);
+		Vec3 v(1, 2, 3);
 		EXPECT_EQ(v.x(), 1);
 		EXPECT_EQ(v.y(), 2);
 		EXPECT_EQ(v.z(), 3);
@@ -30,51 +30,51 @@ TEST(Vec3, DefaultValues) {
 }
 
 TEST(Vec3, BasicMath) {
-	const vec3 v(1, 2, 3);
-	const vec3 w(2, 4, 6);
+	const Vec3 v(1, 2, 3);
+	const Vec3 w(2, 4, 6);
 
-	EXPECT_TRUE(unsafe_equal(v + w, vec3(3, 6, 9)));
-	EXPECT_TRUE(unsafe_equal(w + v, vec3(3, 6, 9)));
-	EXPECT_TRUE(unsafe_equal(v - w, vec3(-1, -2, -3)));
-	EXPECT_TRUE(unsafe_equal(w - v, vec3(1, 2, 3)));
+	EXPECT_TRUE(unsafe_equal(v + w, Vec3(3, 6, 9)));
+	EXPECT_TRUE(unsafe_equal(w + v, Vec3(3, 6, 9)));
+	EXPECT_TRUE(unsafe_equal(v - w, Vec3(-1, -2, -3)));
+	EXPECT_TRUE(unsafe_equal(w - v, Vec3(1, 2, 3)));
 
-	vec3 a;
+	Vec3 a;
 	a -= v;
-	EXPECT_TRUE(unsafe_equal(a, vec3(-1, -2, -3)));
+	EXPECT_TRUE(unsafe_equal(a, Vec3(-1, -2, -3)));
 	a -= w;
-	EXPECT_TRUE(unsafe_equal(a, vec3(-3, -6, -9)));
+	EXPECT_TRUE(unsafe_equal(a, Vec3(-3, -6, -9)));
 
-	vec3 b;
+	Vec3 b;
 	b += v;
-	EXPECT_TRUE(unsafe_equal(b, vec3(1, 2, 3)));
+	EXPECT_TRUE(unsafe_equal(b, Vec3(1, 2, 3)));
 	b += w;
-	EXPECT_TRUE(unsafe_equal(b, vec3(3, 6, 9)));
+	EXPECT_TRUE(unsafe_equal(b, Vec3(3, 6, 9)));
 
-	vec3 c = v;
-	EXPECT_TRUE(unsafe_equal(c *= 2.0f, vec3(2, 4, 6)));
-	EXPECT_TRUE(unsafe_equal(c, vec3(2, 4, 6)));
-	EXPECT_TRUE(unsafe_equal(c /= 2.0f, vec3(1, 2, 3)));
-	EXPECT_TRUE(unsafe_equal(c, vec3(1, 2, 3)));
+	Vec3 c = v;
+	EXPECT_TRUE(unsafe_equal(c *= 2.0f, Vec3(2, 4, 6)));
+	EXPECT_TRUE(unsafe_equal(c, Vec3(2, 4, 6)));
+	EXPECT_TRUE(unsafe_equal(c /= 2.0f, Vec3(1, 2, 3)));
+	EXPECT_TRUE(unsafe_equal(c, Vec3(1, 2, 3)));
 }
 
 TEST(Vec3, Length) {
-	vec3 a;
+	Vec3 a;
 	EXPECT_EQ(a.length(), 0);
-	vec3 b(1, 0, 0);
+	Vec3 b(1, 0, 0);
 	EXPECT_EQ(b.length(), 1.0f);
-	vec3 c(1, 2, 3);
-	EXPECT_TRUE(almost_equal(c.length(), 3.741657f, 0.00001f, 0.00001f));
+	Vec3 c(1, 2, 3);
+	EXPECT_TRUE(nearly_equal(c.length(), 3.741657f, 0.00001f, 0.00001f));
 }
 
 TEST(Vec3, LengthSquared) {
-	vec3 a;
+	Vec3 a;
 	EXPECT_EQ(a.length_squared(), 0);
-	vec3 b(1, 0, 0);
+	Vec3 b(1, 0, 0);
 	EXPECT_EQ(b.length_squared(), 1.0f);
-	vec3 c(1, 2, 3);
+	Vec3 c(1, 2, 3);
 	EXPECT_EQ(c.length_squared(), 14.0f);
 }
 
 TEST(Vec3, Dot) {
-	EXPECT_EQ(dot(vec3(1, 2, 3), vec3(4, -5, 6)), 12);
+	EXPECT_EQ(dot(Vec3(1, 2, 3), Vec3(4, -5, 6)), 12);
 }

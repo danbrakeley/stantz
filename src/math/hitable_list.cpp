@@ -2,7 +2,7 @@
 #include "hitable_list.h"
 #include <assert.h>
 
-bool hitable_list::hit(const ray& r, float t_min, float t_max, hit_record* p_rec) const {
+bool HitableList::hit(const Ray& r, float t_min, float t_max, hit_record* p_rec) const {
 	assert(p_rec != nullptr);
 
 	hit_record temp_rec;

@@ -45,9 +45,6 @@
     <ClCompile Include="..\src\math\hitable_list.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\math\near.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\math\sphere.cpp">
       <Filter>Source</Filter>
     </ClCompile>

@@ -16,6 +16,14 @@ The version of clang-format used by Visual Studio appears to be v6 for 2017, and
 
 ## notes
 
+### Naming
+
+- class names: `CapitalCamelCase`
+- file names: `lower_case.ext`
+- function names: `lower_case_underscores`
+- struct names: `lower_case_underscores`
+- variable names: `lower_case_underscores`
+
 ### Googletest
 
 Test Fixture class allows resources to be shared across Test Suites.
