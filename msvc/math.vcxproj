@@ -157,6 +157,9 @@
     <ClInclude Include="..\src\math\camera.h" />
     <ClInclude Include="..\src\math\hitable.h" />
     <ClInclude Include="..\src\math\hitable_list.h" />
+    <ClInclude Include="..\src\math\lambertian.h" />
+    <ClInclude Include="..\src\math\material.h" />
+    <ClInclude Include="..\src\math\metal.h" />
     <ClInclude Include="..\src\math\near.h" />
     <ClInclude Include="..\src\math\pch.h" />
     <ClInclude Include="..\src\math\rand.h" />
@@ -166,6 +169,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\math\hitable_list.cpp" />
+    <ClCompile Include="..\src\math\lambertian.cpp" />
+    <ClCompile Include="..\src\math\metal.cpp" />
     <ClCompile Include="..\src\math\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

@@ -3,10 +3,13 @@
 #include "ray.h"
 #include "vec3.h"
 
+class Material;
+
 struct hit_record {
 	float t;
 	Vec3 point;
 	Vec3 normal;
+	Material* p_mat;
 };
 
 class Hitable {

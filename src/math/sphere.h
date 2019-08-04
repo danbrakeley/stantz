@@ -6,12 +6,13 @@
 
 class Sphere : public Hitable {
 public:
-	Sphere() : m_center(), m_radius(0) {}
-	Sphere(Vec3 center, float radius) : m_center(center), m_radius(radius) {}
+	Sphere() : center_(), radius_(0), p_mat_(nullptr) {}
+	Sphere(Vec3 center, float radius, Material* p_mat) : center_(center), radius_(radius), p_mat_(p_mat) {}
 
 	virtual bool hit(const Ray& r, float t_min, float t_max, hit_record* p_rec) const override;
 
 private:
-	Vec3 m_center;
-	float m_radius;
+	Vec3 center_;
+	float radius_;
+	Material* p_mat_;
 };

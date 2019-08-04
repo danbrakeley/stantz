@@ -18,11 +18,14 @@ The version of clang-format used by Visual Studio appears to be v6 for 2017, and
 
 ### Naming
 
-- class names: `CapitalCamelCase`
-- file names: `lower_case.ext`
-- function names: `lower_case_underscores`
-- struct names: `lower_case_underscores`
-- variable names: `lower_case_underscores`
+type | style
+--- | ---
+class names | `CapitalCamelCase`
+class member names | `lower_case_trailing_underscore_`
+file names | `lower_case.ext`
+function names | `lower_case_underscores`
+struct names | `lower_case_underscores`
+variable names | `lower_case_underscores`
 
 ### Googletest
 

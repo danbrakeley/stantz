@@ -56,9 +56,9 @@ inline Vec3 operator-(const Vec3& v, const Vec3& w) {
 	return Vec3(v[0] - w[0], v[1] - w[1], v[2] - w[2]);
 }
 
-// inline Vec3 operator*(const Vec3& v, const Vec3& w) {
-//	return Vec3(v[0] * w[0], v[1] * w[1], v[2] * w[2]);
-//}
+inline Vec3 operator*(const Vec3& v, const Vec3& w) {
+	return Vec3(v[0] * w[0], v[1] * w[1], v[2] * w[2]);
+}
 
 // inline Vec3 operator/(const Vec3& v, const Vec3& w) {
 //	return Vec3(v[0] / w[0], v[1] / w[1], v[2] / w[2]);
@@ -158,4 +158,8 @@ inline bool nearly_equal(const Vec3& v, const Vec3& w, float tol, float zero_tol
 		nearly_equal(v[1], w[1], tol, zero_tol) &&
 		nearly_equal(v[2], w[2], tol, zero_tol);
 	// clang-format on
+}
+
+inline Vec3 reflect(const Vec3& v, const Vec3& normal) {
+	return v - (2.0f * dot(v, normal) * normal);
 }

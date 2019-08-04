@@ -37,6 +37,15 @@
     <ClInclude Include="..\src\math\rand.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\math\material.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\math\metal.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\math\lambertian.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\math\pch.cpp">
@@ -49,6 +58,12 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="..\src\math\vec3.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\math\metal.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\math\lambertian.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

@@ -2,6 +2,9 @@
 #include "math/camera.h"
 #include "math/hitable.h"
 #include "math/hitable_list.h"
+#include "math/lambertian.h"
+#include "math/material.h"
+#include "math/metal.h"
 #include "math/rand.h"
 #include "math/ray.h"
 #include "math/sphere.h"
@@ -11,12 +14,21 @@
 #include <thread>
 #include <assert.h>
 
-Vec3 color(const Ray& r, const Hitable& world) {
+const int kMaxDepth = 50;
+
+Vec3 color(const Ray& r, const Hitable& world, int depth) {
 	hit_record rec;
 	// 0.001f here is to avoid "shadow acne", which is when hits that should be t=0 miss because of rounding error
 	if (world.hit(r, 0.001f, std::numeric_limits<float>::max(), &rec)) {
-		Vec3 target = rec.point + rec.normal + Vec3::random_in_unit_sphere();
-		return 0.5 * color(Ray(rec.point, target - rec.point), world);
+		Ray scattered;
+		Vec3 attenuation;
+		if (depth < kMaxDepth) {
+			assert(rec.p_mat != nullptr);
+			if (rec.p_mat->scatter(r, rec, &attenuation, &scattered)) {
+				return attenuation * color(scattered, world, depth + 1);
+			}
+		}
+		return Vec3(0, 0, 0);
 	}
 
 	Vec3 unit_direction = r.direction().normalize();
@@ -38,8 +50,7 @@ void thread_tracer(const Hitable& world, const Camera& cam, int y_start, int y_s
 				float u = (float(i) + rand_unit<float>()) / float(nx);
 				float v = (float(j) + rand_unit<float>()) / float(ny);
 				Ray r = cam.get_ray(u, v);
-				// Vec3 p = r.point(2);
-				col += color(r, world);
+				col += color(r, world, 0);
 			}
 
 			col /= float(ns);
@@ -55,10 +66,12 @@ void thread_tracer(const Hitable& world, const Camera& cam, int y_start, int y_s
 }
 
 int main() {
-	Hitable* list[2];
-	list[0] = new Sphere(Vec3(0, 0, -1), 0.5);
-	list[1] = new Sphere(Vec3(0, -100.5f, -1), 100);
-	Hitable* world = new HitableList(list, 2);
+	Hitable* list[4];
+	list[0] = new Sphere(Vec3(0, 0, -1), 0.5, new Lambertian(Vec3(0.8f, 0.3f, 0.3f)));
+	list[1] = new Sphere(Vec3(0, -100.5f, -1), 100, new Lambertian(Vec3(0.8f, 0.8f, 0)));
+	list[2] = new Sphere(Vec3(1, 0, -1), 0.5f, new Metal(Vec3(0.8f, 0.6f, 0.2f), 1));
+	list[3] = new Sphere(Vec3(-1, 0, -1), 0.5f, new Metal(Vec3(0.8f, 0.8f, 0.8f), 0.3f));
+	Hitable* world = new HitableList(list, 4);
 	Camera cam;
 
 	// frame buffer to collect work done by different threads

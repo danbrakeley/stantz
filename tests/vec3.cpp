@@ -78,3 +78,7 @@ TEST(Vec3, LengthSquared) {
 TEST(Vec3, Dot) {
 	EXPECT_EQ(dot(Vec3(1, 2, 3), Vec3(4, -5, 6)), 12);
 }
+
+TEST(Vec3, Reflect) {
+	EXPECT_TRUE(unsafe_equal(reflect(Vec3(1, -1, 0), Vec3(0, 1, 0)), Vec3(1, 1, 0)));
+}
