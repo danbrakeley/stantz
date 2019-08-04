@@ -28,7 +28,8 @@ constexpr int nx = 200;
 constexpr int ny = 100;
 constexpr int ns = 100;
 
-void thread_tracer(const hitable& world, const camera& cam, int y_start, int y_stop, short* frame) {
+void thread_tracer(const hitable& world, const camera& cam, int y_start, int y_stop, short* p_frame) {
+	assert(p_frame != nullptr);
 	int iframe = 0;
 	for (int j = y_start; j >= y_stop; j--) {
 		for (int i = 0; i < nx; i++) {
@@ -44,9 +45,9 @@ void thread_tracer(const hitable& world, const camera& cam, int y_start, int y_s
 			col /= float(ns);
 			// gamma correction: raise each component to 1/2 power for gamma of 2
 			col = vec3(sqrt(col[0]), sqrt(col[1]), sqrt(col[2]));
-			frame[iframe++] = short(255.99 * col.r());
-			frame[iframe++] = short(255.99 * col.g());
-			frame[iframe++] = short(255.99 * col.b());
+			p_frame[iframe++] = short(255.99 * col.r());
+			p_frame[iframe++] = short(255.99 * col.g());
+			p_frame[iframe++] = short(255.99 * col.b());
 		}
 	}
 	assert(iframe == 3 * (y_start - y_stop + 1) * nx);

@@ -2,8 +2,8 @@
 #include "hitable_list.h"
 #include <assert.h>
 
-bool hitable_list::hit(const ray& r, float t_min, float t_max, hit_record* rec) const {
-	assert(rec != nullptr);
+bool hitable_list::hit(const ray& r, float t_min, float t_max, hit_record* p_rec) const {
+	assert(p_rec != nullptr);
 
 	hit_record temp_rec;
 	bool hit_anything = false;
@@ -12,7 +12,7 @@ bool hitable_list::hit(const ray& r, float t_min, float t_max, hit_record* rec) 
 		if (m_list[i]->hit(r, t_min, closest_so_far, &temp_rec)) {
 			hit_anything = true;
 			closest_so_far = temp_rec.t;
-			*rec = temp_rec;
+			*p_rec = temp_rec;
 		}
 	}
 	return hit_anything;

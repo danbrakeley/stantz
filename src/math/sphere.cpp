@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "sphere.h"
 
-bool sphere::hit(const ray& r, float t_min, float t_max, hit_record* rec) const {
-	assert(rec != nullptr);
+bool sphere::hit(const ray& r, float t_min, float t_max, hit_record* p_rec) const {
+	assert(p_rec != nullptr);
 
 	vec3 oc = r.origin() - m_center;
 	float a = dot(r.direction(), r.direction());
@@ -18,19 +18,19 @@ bool sphere::hit(const ray& r, float t_min, float t_max, hit_record* rec) const 
 		// some 2's are missing because we cancelled them with b's 2
 		float temp = (-b - sqrt(discriminant)) / a;
 		if (temp < t_max && temp > t_min) {
-			rec->t = temp;
-			rec->point = r.point(rec->t);
+			p_rec->t = temp;
+			p_rec->point = r.point(p_rec->t);
 			// normal is center to point on sphere (aka point of intersection we just calculated)
 			// and radius is the length of any vector from the center to the surface, so skip a sqrt
-			rec->normal = (rec->point - m_center) / m_radius;
+			p_rec->normal = (p_rec->point - m_center) / m_radius;
 			return true;
 		}
 		// if the above closest root wasn't in the range we want, try again for second root
 		temp = (-b + sqrt(discriminant)) / a;
 		if (temp < t_max && temp > t_min) {
-			rec->t = temp;
-			rec->point = r.point(rec->t);
-			rec->normal = (rec->point - m_center) / m_radius;
+			p_rec->t = temp;
+			p_rec->point = r.point(p_rec->t);
+			p_rec->normal = (p_rec->point - m_center) / m_radius;
 			return true;
 		}
 	}

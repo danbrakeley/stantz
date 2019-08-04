@@ -8,7 +8,7 @@ public:
 	sphere() : m_center(), m_radius(0) {}
 	sphere(vec3 center, float radius) : m_center(center), m_radius(radius) {}
 
-	virtual bool hit(const ray& r, float t_min, float t_max, hit_record* rec) const;
+	virtual bool hit(const ray& r, float t_min, float t_max, hit_record* p_rec) const override;
 
 private:
 	vec3 m_center;
