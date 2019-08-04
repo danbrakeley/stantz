@@ -175,6 +175,9 @@
     <ProjectReference Include="math.vcxproj">
       <Project>{ff360fa6-cd4e-4866-937e-127638cc3e4f}</Project>
     </ProjectReference>
+    <ProjectReference Include="tests.vcxproj">
+      <Project>{67ee8cc8-22fb-4049-aac5-f6e81c85dc6d}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
