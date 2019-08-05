@@ -7,7 +7,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stantz", "msvc\stantz.vcxpr
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests", "msvc\tests.vcxproj", "{67EE8CC8-22FB-4049-AAC5-F6E81C85DC6D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "math", "msvc\math.vcxproj", "{FF360FA6-CD4E-4866-937E-127638CC3E4F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "renderer", "msvc\renderer.vcxproj", "{FF360FA6-CD4E-4866-937E-127638CC3E4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

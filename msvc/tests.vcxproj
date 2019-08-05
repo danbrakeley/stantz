@@ -64,7 +64,7 @@
     <None Include="../tests/packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="math.vcxproj">
+    <ProjectReference Include="renderer.vcxproj">
       <Project>{ff360fa6-cd4e-4866-937e-127638cc3e4f}</Project>
     </ProjectReference>
   </ItemGroup>

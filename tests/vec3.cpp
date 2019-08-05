@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "math/vec3.h"
+#include "renderer/vec3.h"
 
 TEST(Vec3, DefaultValues) {
 	{
