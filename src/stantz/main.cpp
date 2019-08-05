@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "renderer/camera.h"
+#include "renderer/dielectric.h"
 #include "renderer/hitable.h"
 #include "renderer/hitable_list.h"
 #include "renderer/lambertian.h"
@@ -19,12 +20,13 @@ int main() {
 	cfg.max_ray_depth = 50;
 	cfg.cam = Camera();
 
-	Hitable* list[4];
-	list[0] = new Sphere(Vec3(0, 0, -1), 0.5, new Lambertian(Vec3(0.8f, 0.3f, 0.3f)));
+	Hitable* list[5];
+	list[0] = new Sphere(Vec3(0, 0, -1), 0.5, new Lambertian(Vec3(0.1f, 0.2f, 0.5f)));
 	list[1] = new Sphere(Vec3(0, -100.5f, -1), 100, new Lambertian(Vec3(0.8f, 0.8f, 0)));
-	list[2] = new Sphere(Vec3(1, 0, -1), 0.5f, new Metal(Vec3(0.8f, 0.6f, 0.2f), 1));
-	list[3] = new Sphere(Vec3(-1, 0, -1), 0.5f, new Metal(Vec3(0.8f, 0.8f, 0.8f), 0.3f));
-	cfg.p_world = new HitableList(list, 4);
+	list[2] = new Sphere(Vec3(1, 0, -1), 0.5f, new Metal(Vec3(0.8f, 0.6f, 0.2f), 0.2f));
+	list[3] = new Sphere(Vec3(-1, 0, -1), 0.5f, new Dielectric(1.5f));
+	list[4] = new Sphere(Vec3(-1, 0, -1), -0.45f, new Dielectric(1.5f));
+	cfg.p_world = new HitableList(list, 5);
 
 	// frame buffer to collect work done by different threads
 	int frame_size = cfg.pixel_width * cfg.pixel_height * 3;

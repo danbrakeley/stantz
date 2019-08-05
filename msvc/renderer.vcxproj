@@ -155,6 +155,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\src\renderer\camera.h" />
+    <ClInclude Include="..\src\renderer\dielectric.h" />
     <ClInclude Include="..\src\renderer\hitable.h" />
     <ClInclude Include="..\src\renderer\hitable_list.h" />
     <ClInclude Include="..\src\renderer\lambertian.h" />
@@ -169,6 +170,7 @@
     <ClInclude Include="..\src\renderer\vec3.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\renderer\dielectric.cpp" />
     <ClCompile Include="..\src\renderer\hitable_list.cpp" />
     <ClCompile Include="..\src\renderer\lambertian.cpp" />
     <ClCompile Include="..\src\renderer\metal.cpp" />

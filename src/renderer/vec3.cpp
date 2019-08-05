@@ -13,3 +13,14 @@ Vec3 Vec3::random_in_unit_sphere() {
 	} while (p.length_squared() >= 1);
 	return p;
 }
+
+bool refract(const Vec3& v, const Vec3& normal, float ni_over_nt, Vec3* p_refracted) {
+	Vec3 uv = v.normalize();
+	float dt = dot(uv, normal);
+	float discriminant = 1 - ni_over_nt * ni_over_nt * (1 - dt * dt);
+	if (discriminant > 0) {
+		*p_refracted = ni_over_nt * (uv - normal * dt) - normal * sqrt(discriminant);
+		return true;
+	}
+	return false;
+}

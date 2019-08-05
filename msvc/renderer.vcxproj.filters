@@ -49,6 +49,9 @@
     <ClInclude Include="..\src\renderer\renderer.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\renderer\dielectric.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\renderer\pch.cpp">
@@ -70,6 +73,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="..\src\renderer\renderer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\renderer\dielectric.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

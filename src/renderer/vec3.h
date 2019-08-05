@@ -163,3 +163,5 @@ inline bool nearly_equal(const Vec3& v, const Vec3& w, float tol, float zero_tol
 inline Vec3 reflect(const Vec3& v, const Vec3& normal) {
 	return v - (2.0f * dot(v, normal) * normal);
 }
+
+bool refract(const Vec3& v, const Vec3& normal, float ni_over_nt, Vec3* p_refracted);
