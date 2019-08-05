@@ -7,10 +7,35 @@
 #include "vec3.h"
 #include <iostream>
 #include <limits>
+#include <mutex>
 #include <thread>
 #include <assert.h>
 
 namespace renderer {
+
+// this manages handing out lines in need of rendering to available threads
+class LineWrangler {
+public:
+	LineWrangler(int num_lines) : num_lines_(num_lines) {}
+
+	int next_line() {
+		std::lock_guard<std::mutex> lockGuard(mutex_);
+		if (num_lines_ <= 0) {
+			return -1;
+		}
+		return --num_lines_;
+	}
+
+	void report_complete(int lines) {
+		std::lock_guard<std::mutex> lockGuard(mutex_cerr_);
+		std::cerr << "Thread " << std::this_thread::get_id() << " finished " << lines << " line(s)." << std::endl;
+	}
+
+private:
+	int num_lines_;
+	std::mutex mutex_;
+	std::mutex mutex_cerr_;
+};
 
 Vec3 color(const Ray& r, const Hitable& world, int max_depth, int cur_depth) {
 	hit_record rec;
@@ -32,15 +57,25 @@ Vec3 color(const Ray& r, const Hitable& world, int max_depth, int cur_depth) {
 	return (1.0f - t) * Vec3(1, 1, 1) + t * Vec3(0.5f, 0.7f, 1);
 }
 
-void thread_tracer(const config& cfg, int y_start, int y_stop, short* p_frame) {
+void thread_tracer(const config& cfg, LineWrangler* p_liner, short* p_frame) {
 	assert(p_frame != nullptr);
-	int iframe = 0;
-	for (int j = y_start; j >= y_stop; j--) {
+	assert(p_liner != nullptr);
+
+	int count = 0;
+	for (;;) {
+		int line = p_liner->next_line();
+		if (line == -1) {
+			p_liner->report_complete(count);
+			return;
+		}
+		++count;
+
+		int iframe = (cfg.pixel_height - (line + 1)) * cfg.pixel_width * 3;
 		for (int i = 0; i < cfg.pixel_width; i++) {
 			Vec3 col(0, 0, 0);
 			for (int s = 0; s < cfg.rays_per_pixel; s++) {
 				float u = (float(i) + rand_unit<float>()) / float(cfg.pixel_width);
-				float v = (float(j) + rand_unit<float>()) / float(cfg.pixel_height);
+				float v = (float(line) + rand_unit<float>()) / float(cfg.pixel_height);
 				Ray r = cfg.cam.get_ray(u, v);
 				col += color(r, *cfg.p_world, cfg.max_ray_depth, 0);
 			}
@@ -53,27 +88,16 @@ void thread_tracer(const config& cfg, int y_start, int y_stop, short* p_frame) {
 			p_frame[iframe++] = short(255.99 * col.b());
 		}
 	}
-	assert(iframe == 3 * (y_start - y_stop + 1) * cfg.pixel_width);
-	std::cerr << "Thread " << y_start << " did " << (y_start - y_stop + 1) << " lines." << std::endl;
 }
 
 void render(const config& cfg, int num_threads, short* p_frame) {
 	std::cerr << "Total Threads: " << num_threads << std::endl;
-	int lines_per_thread = cfg.pixel_height / num_threads;
 	auto threads = new std::thread[num_threads];
 
-	// run (num_threads - 1) threads
-	int y_start = cfg.pixel_height - 1;
-	for (int i = 0; i < num_threads - 1; i++) {
-		auto y_stop = y_start - lines_per_thread + 1;
-		auto frame_with_offset = p_frame + (3 * i * lines_per_thread * cfg.pixel_width);
-
-		threads[i] = std::thread(thread_tracer, std::cref(cfg), y_start, y_stop, frame_with_offset);
-		y_start -= lines_per_thread;
+	LineWrangler liner(cfg.pixel_height);
+	for (int i = 0; i < num_threads; i++) {
+		threads[i] = std::thread(thread_tracer, std::cref(cfg), &liner, p_frame);
 	}
-
-	// occupy the main thread with the remaining work
-	thread_tracer(cfg, y_start, 0, p_frame + (3 * (num_threads - 1) * lines_per_thread * cfg.pixel_width));
 
 	// sync threads back to main
 	for (int i = 0; i < num_threads - 1; i++) {
