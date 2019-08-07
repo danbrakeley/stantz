@@ -160,6 +160,7 @@
     <ClInclude Include="..\src\renderer\hitable_list.h" />
     <ClInclude Include="..\src\renderer\lambertian.h" />
     <ClInclude Include="..\src\renderer\material.h" />
+    <ClInclude Include="..\src\renderer\math.h" />
     <ClInclude Include="..\src\renderer\metal.h" />
     <ClInclude Include="..\src\renderer\near.h" />
     <ClInclude Include="..\src\renderer\pch.h" />

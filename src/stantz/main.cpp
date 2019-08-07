@@ -18,7 +18,8 @@ int main() {
 	cfg.pixel_height = 100;
 	cfg.rays_per_pixel = 100;
 	cfg.max_ray_depth = 50;
-	cfg.cam = Camera();
+	float aspect = static_cast<float>(cfg.pixel_width) / static_cast<float>(cfg.pixel_height);
+	cfg.cam = Camera(Vec3(-2, 2, 1), Vec3(0, 0, -1), Vec3(0, 1, 0), 20, aspect);
 
 	Hitable* list[5];
 	list[0] = new Sphere(Vec3(0, 0, -1), 0.5, new Lambertian(Vec3(0.1f, 0.2f, 0.5f)));
