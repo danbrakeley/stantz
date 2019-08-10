@@ -33,6 +33,7 @@ public:
 	inline void normalize_in_place();
 
 	static Vec3 random_in_unit_sphere();
+	static Vec3 random_in_unit_disc();
 
 private:
 	float e[3];

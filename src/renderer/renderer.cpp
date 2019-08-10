@@ -76,7 +76,7 @@ void thread_tracer(const config& cfg, LineWrangler* p_liner, short* p_frame) {
 			for (int s = 0; s < cfg.rays_per_pixel; s++) {
 				float u = (float(i) + rand_unit<float>()) / float(cfg.pixel_width);
 				float v = (float(line) + rand_unit<float>()) / float(cfg.pixel_height);
-				Ray r = cfg.cam.get_ray(u, v);
+				Ray r = cfg.p_cam->get_ray(u, v);
 				col += color(r, *cfg.p_world, cfg.max_ray_depth, 0);
 			}
 

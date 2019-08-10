@@ -9,3 +9,8 @@ T rand_unit() {
 	std::uniform_real_distribution<T> distribution(0, 1);
 	return distribution(generator);
 }
+
+template<class T>
+inline T rand_unit_x2() {
+	return rand_unit<T>() * rand_unit<T>();
+}

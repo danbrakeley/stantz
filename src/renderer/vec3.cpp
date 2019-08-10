@@ -14,6 +14,14 @@ Vec3 Vec3::random_in_unit_sphere() {
 	return p;
 }
 
+Vec3 Vec3::random_in_unit_disc() {
+	Vec3 p;
+	do {
+		p = 2 * Vec3(rand_unit<float>(), rand_unit<float>(), 0) - Vec3(1, 1, 0);
+	} while (p.length_squared() >= 1);
+	return p;
+}
+
 bool refract(const Vec3& v, const Vec3& normal, float ni_over_nt, Vec3* p_refracted) {
 	Vec3 uv = v.normalize();
 	float dt = dot(uv, normal);

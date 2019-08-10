@@ -10,7 +10,7 @@ struct config {
 	int pixel_height;
 	int rays_per_pixel;
 	int max_ray_depth;
-	Camera cam;
+	Camera* p_cam;
 	Hitable* p_world;
 };
 
