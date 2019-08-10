@@ -28,4 +28,7 @@
     <None Include="..\.editorconfig" />
     <None Include="..\.gitignore" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\LICENSE.txt" />
+  </ItemGroup>
 </Project>
